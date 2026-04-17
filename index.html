@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloud Feedback System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Feedback Form</h1>
+        <form action="/submit" method="POST">
+            <input type="text" name="name" placeholder="Your Name (Optional)">
+            <textarea name="message" placeholder="Enter your feedback" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+
+        <a href="/admin" target="_blank">View All Feedback (Admin)</a>
+    </div>
+</body>
+</html>
