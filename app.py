@@ -48,8 +48,51 @@ def submit():
     db.collection("feedback").add(feedback_data)
 
     return render_template("index.html", success=True)
-@app.route('/admin')
+
+@app.route("/admin-login", methods=["GET", "POST"])
+def admin_login():
+    if request.method == "POST":
+        password = request.form.get("password")
+
+        if password == ADMIN_PASSWORD:
+            session["admin"] = True
+            return redirect("/admin")
+        else:
+            return "Wrong Password!"
+
+    return '''
+        <h2>Admin Login</h2>
+        <form method="POST">
+            <input type="password" name="password" placeholder="Enter Password">
+            <button type="submit">Login</button>
+        </form>
+    '''
+    
+@app.route("/admin")
 def admin():
+
+    # 🔐 Protect route
+    if not session.get("admin"):
+        return redirect("/admin-login")
+
+    feedbacks = db.collection("feedback").stream()
+
+    feedback_list = []
+    total = 0
+    total_rating = 0
+
+    for doc in feedbacks:
+        data = doc.to_dict()
+        feedback_list.append(data)
+        total += 1
+        total_rating += data.get("rating", 0)
+
+    average = round(total_rating / total, 2) if total > 0 else 0
+
+    return render_template("admin.html",
+                           feedbacks=feedback_list,
+                           total=total,
+                           average=average)
     feedbacks = db.collection("feedbacks").stream()
     feedback_list = [f.to_dict() for f in feedbacks]
     return {"feedbacks": feedback_list}
