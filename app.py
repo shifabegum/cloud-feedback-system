@@ -6,9 +6,16 @@ import os
 import json
 
 app = Flask(__name__)
-@app.route('/test')
-def test():
-    return "TEST ROUTE WORKING"
+app = Flask(__name__)
+
+# 🔐 Secret key for session management
+app.secret_key = "supersecretkey"
+
+# 🔐 Admin password
+ADMIN_PASSWORD = "Shifa123"
+@app.route("/")
+def home():
+    return render_template("index.html", success=False)
 
 # Firebase Initialization (Render + Local Compatible)
 
@@ -25,20 +32,22 @@ db = firestore.client()
 def index():
     return render_template("index.html")
 
-@app.route('/submit', methods=['POST'])
+@app.route("/submit", methods=["POST"])
 def submit():
-    name = request.form.get('name')
-    message = request.form.get('message')
+    name = request.form.get("name")
+    message = request.form.get("message")
+    rating = int(request.form.get("rating"))
 
     feedback_data = {
         "name": name if name else "Anonymous",
-        "message": message
+        "message": message,
+        "rating": rating,
+        "timestamp": datetime.now()
     }
 
-    db.collection("feedbacks").add(feedback_data)
+    db.collection("feedback").add(feedback_data)
 
-    return redirect('/')
-
+    return render_template("index.html", success=True)
 @app.route('/admin')
 def admin():
     feedbacks = db.collection("feedbacks").stream()
