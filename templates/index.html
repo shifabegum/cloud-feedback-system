@@ -8,28 +8,41 @@
 </head>
 <body>
 
-    <div class="background"></div>
+<div class="background"></div>
 
-    <div class="container">
-        <h1>☁ Cloud Feedback System</h1>
-        <p class="subtitle">We value your thoughts and suggestions</p>
+<div class="container">
+    <h1>☁ Cloud Feedback System</h1>
+    <p class="subtitle">We value your feedback</p>
 
-        <form action="/submit" method="POST">
-            <div class="input-group">
-                <input type="text" name="name" placeholder="Your Name (Optional)">
+    {% if success %}
+        <div class="success-popup">
+            ✅ Feedback submitted successfully!
+        </div>
+    {% endif %}
+
+    <form action="/submit" method="POST">
+
+        <input type="text" name="name" placeholder="Your Name (Optional)">
+
+        <!-- ⭐ Star Rating -->
+        <div class="rating">
+            <label>Rate Us:</label>
+            <div class="stars">
+                <input type="radio" name="rating" value="5" required> ⭐⭐⭐⭐⭐
+                <input type="radio" name="rating" value="4"> ⭐⭐⭐⭐
+                <input type="radio" name="rating" value="3"> ⭐⭐⭐
+                <input type="radio" name="rating" value="2"> ⭐⭐
+                <input type="radio" name="rating" value="1"> ⭐
             </div>
+        </div>
 
-            <div class="input-group">
-                <textarea name="message" placeholder="Enter your feedback here..." required></textarea>
-            </div>
+        <textarea name="message" placeholder="Enter your feedback..." required></textarea>
 
-            <button type="submit">Submit Feedback</button>
-        </form>
+        <button type="submit">Submit Feedback</button>
+    </form>
 
-        <a href="/admin" target="_blank" class="admin-link">
-            🔐 View All Feedback (Admin)
-        </a>
-    </div>
+    <a href="/admin-login" class="admin-link">🔐 Admin Login</a>
+</div>
 
 </body>
 </html>
