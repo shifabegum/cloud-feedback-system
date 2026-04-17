@@ -107,3 +107,30 @@ button:hover {
     opacity: 1;
     text-decoration: underline;
 }
+
+/* Success Popup */
+.success-popup {
+    background: #00c853;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+    0% {opacity:1;}
+    80% {opacity:1;}
+    100% {opacity:0; display:none;}
+}
+
+/* Rating */
+.rating {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.stars input {
+    display: block;
+    margin-bottom: 5px;
+}
