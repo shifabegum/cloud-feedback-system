@@ -24,17 +24,32 @@
 
         <input type="text" name="name" placeholder="Your Name (Optional)">
 
-        <!-- ⭐ Star Rating -->
-        <div class="rating">
-            <label>Rate Us:</label>
-            <div class="stars">
-                <input type="radio" name="rating" value="5" required> ⭐⭐⭐⭐⭐
-                <input type="radio" name="rating" value="4"> ⭐⭐⭐⭐
-                <input type="radio" name="rating" value="3"> ⭐⭐⭐
-                <input type="radio" name="rating" value="2"> ⭐⭐
-                <input type="radio" name="rating" value="1"> ⭐
-            </div>
-        </div>
+       <div class="stars">
+    <label class="star-row">
+        <input type="radio" name="rating" value="5" required>
+        <span>⭐⭐⭐⭐⭐</span>
+    </label>
+
+    <label class="star-row">
+        <input type="radio" name="rating" value="4">
+        <span>⭐⭐⭐⭐</span>
+    </label>
+
+    <label class="star-row">
+        <input type="radio" name="rating" value="3">
+        <span>⭐⭐⭐</span>
+    </label>
+
+    <label class="star-row">
+        <input type="radio" name="rating" value="2">
+        <span>⭐⭐</span>
+    </label>
+
+    <label class="star-row">
+        <input type="radio" name="rating" value="1">
+        <span>⭐</span>
+    </label>
+</div>
 
         <textarea name="message" placeholder="Enter your feedback..." required></textarea>
 
