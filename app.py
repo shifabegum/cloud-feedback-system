@@ -6,7 +6,6 @@ import os
 import json
 
 app = Flask(__name__)
-app = Flask(__name__)
 
 # 🔐 Secret key for session management
 app.secret_key = "supersecretkey"
@@ -93,6 +92,11 @@ def admin():
                            feedbacks=feedback_list,
                            total=total,
                            average=average)
+
+@app.route("/logout")
+def logout():
+    session.pop("admin", None)
+    return redirect("/")
     
 @app.route("/admin")
 def admin():
