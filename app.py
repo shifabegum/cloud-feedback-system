@@ -67,6 +67,32 @@ def admin_login():
             <button type="submit">Login</button>
         </form>
     '''
+
+@app.route("/admin")
+def admin():
+
+    # 🔐 Protect dashboard
+    if not session.get("admin"):
+        return redirect("/admin-login")
+
+    feedbacks = db.collection("feedback").stream()
+
+    feedback_list = []
+    total = 0
+    total_rating = 0
+
+    for doc in feedbacks:
+        data = doc.to_dict()
+        feedback_list.append(data)
+        total += 1
+        total_rating += data.get("rating", 0)
+
+    average = round(total_rating / total, 2) if total > 0 else 0
+
+    return render_template("admin.html",
+                           feedbacks=feedback_list,
+                           total=total,
+                           average=average)
     
 @app.route("/admin")
 def admin():
