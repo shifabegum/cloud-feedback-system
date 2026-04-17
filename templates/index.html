@@ -2,18 +2,34 @@
 <html>
 <head>
     <title>Cloud Feedback System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <div class="background"></div>
+
     <div class="container">
-        <h1>Feedback Form</h1>
+        <h1>☁ Cloud Feedback System</h1>
+        <p class="subtitle">We value your thoughts and suggestions</p>
+
         <form action="/submit" method="POST">
-            <input type="text" name="name" placeholder="Your Name (Optional)">
-            <textarea name="message" placeholder="Enter your feedback" required></textarea>
-            <button type="submit">Submit</button>
+            <div class="input-group">
+                <input type="text" name="name" placeholder="Your Name (Optional)">
+            </div>
+
+            <div class="input-group">
+                <textarea name="message" placeholder="Enter your feedback here..." required></textarea>
+            </div>
+
+            <button type="submit">Submit Feedback</button>
         </form>
 
-        <a href="/admin" target="_blank">View All Feedback (Admin)</a>
+        <a href="/admin" target="_blank" class="admin-link">
+            🔐 View All Feedback (Admin)
+        </a>
     </div>
+
 </body>
 </html>
