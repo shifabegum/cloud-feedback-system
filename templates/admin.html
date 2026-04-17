@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+
+<h1>📊 Admin Dashboard</h1>
+
+<h3>Total Feedback: {{ total }}</h3>
+<h3>Average Rating: ⭐ {{ average }}</h3>
+
+<hr>
+
+{% for fb in feedbacks %}
+<div style="margin-bottom:20px; padding:10px; border:1px solid #ccc;">
+    <strong>Name:</strong> {{ fb.name }} <br>
+    <strong>Rating:</strong> ⭐ {{ fb.rating }} <br>
+    <strong>Message:</strong> {{ fb.message }} <br>
+    <strong>Time:</strong> {{ fb.timestamp }}
+</div>
+{% endfor %}
+
+</body>
+</html>
