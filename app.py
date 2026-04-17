@@ -5,6 +5,9 @@ import os
 import json
 
 app = Flask(__name__)
+@app.route('/test')
+def test():
+    return "TEST ROUTE WORKING"
 
 # Firebase Initialization (Render + Local Compatible)
 
